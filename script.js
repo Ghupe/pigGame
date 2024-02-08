@@ -6,13 +6,16 @@ const player1Score = document.querySelector('#score--0');
 const player2Score = document.querySelector('#score--1');
 const diceImg = document.querySelector('.dice');
 const currentScore = document.querySelector('.current-score');
-const player1CurrentScore = document.querySelector('#current--0')
-const player2CurrentScore = document.querySelector('#current--1')
+const player1CurrentScoreTxt = document.querySelector('#current--0')
+const player2CurrentScoreTxt = document.querySelector('#current--1')
 const newGameBtn = document.querySelector('.btn--new');
 const diceRollBtn = document.querySelector('.btn--roll');
-const holdCurrentScore = document.querySelector('.btn--hold');
+const holdScoreBtn = document.querySelector('.btn--hold');
 let sumOfDice = 0
 let activePlayer
+let player1currentScore = 0
+let player2currentScore = 0
+
 
 if (player1.classList.contains('player--active')){
   activePlayer = player1
@@ -20,6 +23,11 @@ if (player1.classList.contains('player--active')){
   activePlayer = player2
 }
 
+function scoreClean () {
+  player1Score.textContent = "0"
+  player2Score.textContent = "0"
+  sumOfDice = 0
+}
 
 function sideChange (){
 
@@ -28,14 +36,14 @@ function sideChange (){
     player1.classList.remove('player--active')
     player2.classList.add('player--active')
     activePlayer = player2
-    player1Score.textContent = "0"
+    scoreClean()
 
   }else if (activePlayer === player2) {
 
     player2.classList.remove('player--active')
     player1.classList.add('player--active')
     activePlayer = player1
-    player2Score.textContent = "0"
+    scoreClean()
 
   }
 
@@ -60,11 +68,34 @@ function rollTheDice() {
 
     }else {
 
-      sumOfDice = 0
+      scoreClean()
       sideChange()
 
     }
 }
 
 
+function holdScore () {
+
+  if (activePlayer === player1){
+
+    player1currentScore += sumOfDice
+    player1CurrentScoreTxt.textContent = player1currentScore
+    scoreClean()
+    sideChange()
+
+  }else if (activePlayer === player2){
+
+    player2currentScore += sumOfDice
+    player2CurrentScoreTxt.textContent = player2currentScore
+    scoreClean()
+    sideChange()
+
+  }
+
+}
+
+
+
 diceRollBtn.addEventListener('click', rollTheDice);
+holdScoreBtn.addEventListener('click',holdScore)
