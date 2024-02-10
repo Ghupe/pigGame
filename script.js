@@ -25,20 +25,29 @@ let player2currentScore = 0;
 
 
 if (player1.classList.contains('player--active')) {
+
   activePlayer = player1;
+
 } else {
+
   activePlayer = player2;
+
 }
 
 function scoreClean() {
+
   player1Score.textContent = '0';
   player2Score.textContent = '0';
   sumOfDice = 0;
+
 }
 
 function currentScoreClean() {
-  player1CurrentScoreTxt.textContent = "0"
-  player2CurrentScoreTxt.textContent = "0"
+
+  player1CurrentScoreTxt.textContent = '0';
+  player2CurrentScoreTxt.textContent = '0';
+  player2currentScore = 0;
+  player1currentScore = 0;
 }
 
 function sideChange() {
@@ -107,16 +116,18 @@ function holdScore() {
     sideChange();
     win();
 
-
   }
 }
 
 function resultDisplay(display) {
+
   player1result.style.display = display;
   player2result.style.display = display;
+
 }
 
 function mainDisplay(display) {
+
   p1Score.style.display = display;
   p2Score.style.display = display;
   p1Current.style.display = display;
@@ -126,34 +137,46 @@ function mainDisplay(display) {
   holdScoreBtn.style.display = display;
   diceImg.style.display = display;
   hideMainWindow.style.display = display;
+
 }
 
+function paddingConf(size) {
+
+  player2.style.padding = size;
+  playerBox.style.padding = size;
+  player2.style.padding = size;
+  player1.style.padding = size;
+
+}
 
 function player1Win() {
-  player1.style.padding = '0';
-  playerBox.style.padding = '0';
+
+  paddingConf('0');
   player1result.src = 'winner.jpeg';
   player2result.src = 'loser.jpeg';
   mainDisplay('none');
+
 }
 
 function player2Win() {
-  player2.style.padding = '0';
-  playerBox.style.padding = '0';
-  player2.style.padding = '0';
+
+  paddingConf('0');
   player2result.src = 'winner.jpeg';
   player1result.src = 'loser.jpeg';
   mainDisplay('none');
+
 }
 
 
 function win() {
 
-  if (player1currentScore >= 20) {
+  if (player1currentScore >= 100) {
+
     resultDisplay('block');
     player1Win();
 
-  } else if (player2currentScore >= 20) {
+  } else if (player2currentScore >= 100) {
+
     resultDisplay('block');
     player2Win();
 
@@ -165,14 +188,11 @@ function restartGame() {
 
   resultDisplay('none');
   mainDisplay('block');
-  scoreClean()
-  currentScoreClean()
-  diceImg.src = "dice1.png"
-  player1.style.padding = '9rem';
-  playerBox.style.padding = '9rem';
-  player2.style.padding = '9rem';
-  playerBox.style.padding = '9rem';
-  player2.style.padding = '9rem';
+  scoreClean();
+  currentScoreClean();
+  paddingConf('9rem');
+  player2.classList.remove('player--active');
+  player1.classList.add('player--active');
 
 }
 
