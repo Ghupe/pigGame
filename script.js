@@ -191,6 +191,7 @@ function restartGame() {
   scoreClean();
   currentScoreClean();
   paddingConf('9rem');
+  diceImg.src = "dice1.png"
   player2.classList.remove('player--active');
   player1.classList.add('player--active');
 
