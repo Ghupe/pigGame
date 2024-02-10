@@ -162,3 +162,22 @@ main {
   font-weight: 700;
   color: #d50b0b;
 }
+
+.hide{
+  display: block;
+}
+
+.player1_img{
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.player2_img{
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+
+
